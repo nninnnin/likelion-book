@@ -1,0 +1,75 @@
+<div>
+    <h1 style="color:red; text-align:center;">Ordered data</h1>
+    <%= link_to '추출&검색', '/' %>
+</div>
+
+
+
+
+<h2>Book.all.order(price: :desc).limit(3)    (가격, 내림차순, 3개만)</h2>
+
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Isbn</th>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Publish</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @books.each do |book| %>
+      <tr>
+        <td><%= book.id %></td>
+        <td><%= book.isbn %></td>
+        <td><%= book.name %></td>
+        <td><%= book.price %></td>
+        <td><%= book.publish %></td>
+        <td><%= link_to 'Show', book %></td>
+        <td><%= link_to 'Edit', edit_book_path(book) %></td>
+        <td><%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+
+<hr>
+
+
+<h2>Book.where(조건).select(열 선택) = books모델의 조건에 해당하는 모든 데이터에 선택한 열을 보여줌</h2>
+
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Isbn</th>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Publish</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @books_select.each do |book| %>
+      <tr>
+        <td><%= book.id %></td>
+        <td><%= book.name %></td>
+        <td><%= link_to 'Show', book %></td>
+        <td><%= link_to 'Edit', edit_book_path(book) %></td>
+        <td><%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<hr>
+
+<p>Books모델의 데이터는 총 <%= @books_cnt %> 개 입니다.</p>

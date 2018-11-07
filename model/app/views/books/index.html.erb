@@ -1,0 +1,171 @@
+<p id="notice"><%= notice %></p>
+
+<h1 style="color:red; text-align:center;">데이터 추출& 검색!!!!! </h1>
+<%= link_to '정렬', '/order' %>
+<%= link_to '새로만들기', new_book_path %>
+
+<hr>
+
+
+<h1>Book.all = books 모델의 모든 데이터</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Isbn</th>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Publisher</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @books.each do |book| %>
+      <tr>
+        <td><%= book.id %></td>
+        <td><%= book.isbn %></td>
+        <td><%= book.name %></td>
+        <td><%= book.price %></td>
+        <td><%= book.publish %></td>
+        <td><%= link_to 'Show', book_path(book) %></td>
+        <td><%= link_to 'Edit', edit_book_path(book) %></td>
+        <td><%= link_to 'Destroy', book_path(book) , method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<hr>
+
+<h1>Book.find([id1, id2, ...]) = books 모델의 특정 id에 해당하는 데이터</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Isbn</th>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Publish</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @books_find.each do |book| %>
+      <tr>
+        <td><%= book.id %></td>
+        <td><%= book.isbn %></td>
+        <td><%= book.name %></td>
+        <td><%= book.price %></td>
+        <td><%= book.publish %></td>
+        <td><%= link_to 'Show', book %></td>
+        <td><%= link_to 'Edit', edit_book_path(book) %></td>
+        <td><%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<hr>
+
+<h1>Book.find_by([조건1, 조건2, ...]) = books 모델의 조건과 일치하는 <b>첫번째 데이터</b></h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Isbn</th>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Publish</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+      <tr>
+        <td><%= @book_find_by.id %></td>
+        <td><%= @book_find_by.isbn %></td>
+        <td><%= @book_find_by.name %></td>
+        <td><%= @book_find_by.price %></td>
+        <td><%= @book_find_by.publish %></td>
+        <td><%= link_to 'Show', @book_find_by %></td>
+        <td><%= link_to 'Edit', edit_book_path(@book_find_by) %></td>
+        <td><%= link_to 'Destroy', @book_find_by, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+  </tbody>
+</table>
+
+<hr>
+
+<h1>Book.where(조건) = books 모델의 조건과 일치하는 모든 데이터</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Isbn</th>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Publish</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @books_where.each do |book| %>
+      <tr>
+        <td><%= book.id %></td>
+        <td><%= book.isbn %></td>
+        <td><%= book.name %></td>
+        <td><%= book.price %></td>
+        <td><%= book.publish %></td>
+        <td><%= link_to 'Show', book_path(book.id) %></td>
+        <td><%= link_to 'Edit', edit_book_path(book.id) %></td>
+        <td><%= link_to 'Destroy', book_path(book.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+<hr>
+
+<h1>Book.where_not(조건) = books 모델의 조건과 일치하지 않는 모든 데이터</h1>
+
+<form action = '/books'>
+  제외하고 싶은 책의 id값을 입력하세요 
+  <input placeholder="ex) 1, 2, .." type='text' name="id" ></input>
+  <input type='submit'>
+</form>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Isbn</th>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Publish</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @books_where_not.each do |book| %>
+      <tr>
+        <td><%= book.id %></td>
+        <td><%= book.isbn %></td>
+        <td><%= book.name %></td>
+        <td><%= book.price %></td>
+        <td><%= book.publish %></td>
+        <td><%= link_to 'Show', book %></td>
+        <td><%= link_to 'Edit', edit_book_path(book) %></td>
+        <td><%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
